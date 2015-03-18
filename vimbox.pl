@@ -12,6 +12,15 @@ sub c {
     close $h;
 }
 
+my @config = (
+    'backspace=2',
+    'scrolloff=3',
+    'ruler',
+    'showcmd',
+    'ruler',
+    'hlsearch',
+);
+
 my @levels;
 my @solutions;
 my @presses;
@@ -45,7 +54,7 @@ my $ID = $ARGV[0];
 my (undef, $levelfile) = tempfile();
 my (undef, $vimfile) = tempfile();
 c($levelfile, $levels[$ID]);
-system("vim -N -u NONE -w $vimfile $levelfile");
+system("vim -N --cmd 'set ". join(' ', @config) ."' -u NONE -w $vimfile $levelfile");
 
 open(LEVEL, $levelfile);
 $level = <LEVEL>;
@@ -59,7 +68,7 @@ if ($solutions[$ID] ne $level) {
     die "Sorry, your output file does not match our correct output file. Try again!\n";
 }
 
-die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($level)."VIMOUT") . "\n";
+die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($level)."VIM$presses[$ID]OUT") . "\n";
 
 __END__
 As you no doubt realize by now, Perl has some really odd features, and the DATA file handle is one of them. This file handle lets you store read-only data in the same file as your Perl script, which might come in handy if you need to send both code and data to someone via e-mail.
