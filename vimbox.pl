@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use File::Temp qw(tempfile);
 use Digest::MD5 qw(md5_hex);
-use 5.14.0;
+use 5.014;
 
 sub c {
     my ($path, $text) = @_;
@@ -51,6 +51,9 @@ foreach (<DATA>) {
 
 die "usage: $0 ID\n" if (scalar @ARGV < 1);
 my $ID = $ARGV[0];
+
+die "Invalid number of level!\n" if ($ID >= scalar @levels || $ID < 0);
+
 my (undef, $levelfile) = tempfile();
 my (undef, $vimfile) = tempfile();
 c($levelfile, $levels[$ID]);
