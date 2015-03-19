@@ -17,7 +17,7 @@ my @config = (
     'scrolloff=3',
     'ruler',
     'showcmd',
-    'ruler',
+    'wrap',
     'hlsearch',
 );
 
