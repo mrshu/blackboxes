@@ -19,6 +19,7 @@ my @config = (
     'showcmd',
     'wrap',
     'hlsearch',
+    'ffs=unix',
 );
 
 my @levels;
@@ -26,6 +27,7 @@ my @solutions;
 my @presses;
 my $flag = 0;
 my $level = '';
+my $vimout = '';
 my $solution = '';
 
 foreach (<DATA>) {
@@ -58,11 +60,21 @@ my (undef, $levelfile) = tempfile();
 my (undef, $vimfile) = tempfile();
 c($levelfile, $levels[$ID]);
 system("vim -N --cmd 'set ". join(' ', @config) ."' -u NONE -w $vimfile $levelfile");
+{
+    local $/ = undef;
+    open(LEVEL, $levelfile);
+    binmode LEVEL;
+    $level = <LEVEL>;
+    close LEVEL;
+}
 
-open(LEVEL, $levelfile);
-$level = <LEVEL>;
-open(VIMOUT, $vimfile);
-my $vimout = <VIMOUT>;
+{
+    local $/ = undef;
+    open(VIMOUT, $vimfile);
+    binmode VIMOUT;
+    $vimout = <VIMOUT>;
+    close VIMOUT;
+}
 
 if (length $vimout > $presses[$ID]) {
     die "Sorry, you have used more key presses than allowed ($presses[$ID]). Try again!\n";
@@ -85,6 +97,110 @@ Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor fo
 Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
 ---------- 15
 Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
+==========
+Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
+
+Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
+
+# History
+
+Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
+
+The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi.
+
+# Interface
+
+Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
+
+Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
+
+Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
+
+# Customization
+
+Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
+
+There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl.
+
+There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
+---------- 30
+Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
+
+Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
+
+# History
+
+Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
+
+The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi. (well, sort of)
+
+# Interface
+
+Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
+
+Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
+
+Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
+
+# Customization
+
+Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
+
+There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl.
+
+There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
+==========
+Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
+
+Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
+
+# History
+
+Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
+
+The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi.
+
+# Interface
+
+Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
+
+Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
+
+Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
+
+# Customization
+
+Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
+
+There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl.
+
+There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
+---------- 30
+Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
+
+Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
+
+# History
+
+Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
+
+The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi.
+
+# Interface
+
+Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
+
+Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
+
+Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
+
+# Customization
+
+Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
+
+There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl. (and many others)
+
+There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
 ==========
 Moist von Lipwig | 10.14
 Reacher Gilt | 15.34
