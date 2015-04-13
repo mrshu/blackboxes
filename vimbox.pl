@@ -12,6 +12,16 @@ sub c {
     close $h;
 }
 
+sub r {
+    my ($filename) = @_;
+    local $/ = undef;
+    open(LEVEL, $filename);
+    binmode LEVEL;
+    my $contents = <LEVEL>;
+    close LEVEL;
+    return $contents;
+}
+
 my @config = (
     'backspace=2',
     'scrolloff=3',
@@ -60,21 +70,8 @@ my (undef, $levelfile) = tempfile();
 my (undef, $vimfile) = tempfile();
 c($levelfile, $levels[$ID]);
 system("vim -N --cmd 'set ". join(' ', @config) ."' -u NONE -w $vimfile $levelfile");
-{
-    local $/ = undef;
-    open(LEVEL, $levelfile);
-    binmode LEVEL;
-    $level = <LEVEL>;
-    close LEVEL;
-}
-
-{
-    local $/ = undef;
-    open(VIMOUT, $vimfile);
-    binmode VIMOUT;
-    $vimout = <VIMOUT>;
-    close VIMOUT;
-}
+$level = r($levelfile);
+$vimout = r($vimfile);
 
 if (length $vimout > $presses[$ID]) {
     die "Sorry, you have used more key presses than allowed ($presses[$ID]). Try again!\n";
