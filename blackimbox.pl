@@ -122,7 +122,7 @@ if ($presses[$ID] eq 'X') {
     system($level);
     my $v = eval($solutions[$ID]);
     if ($v) {
-        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($level)."VIM$presses[$ID]OUT".md5_hex(r($0))) . "\n";
+        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID)."VIM$presses[$ID]OUT".md5_hex(r($0))) . "\n";
     } else {
         die "Sorry, the command you provided did not produce the correct output. Try again!\n";
     }
@@ -150,192 +150,79 @@ Replace this text with a correct command.
 ---------- X
 fe('zoznam.txt', cut('/etc/passwd', 3, ':'))
 ==========
-Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
+the hitchhiker’s guide to the galaxy has a few things to say on the subject of towels.
 
-Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
-
-# History
-
-Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
-
-The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi.
-
-# Interface
-
-Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
-
-Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
-
-Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
-
-# Customization
-
-Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
-
-There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl.
-
-There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
----------- 30
-Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
-
-Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
-
-# History
-
-Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
-
-The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi. (well, sort of)
-
-# Interface
-
-Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
-
-Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
-
-Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
-
-# Customization
-
-Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
-
-There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl.
-
-There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
-==========
-Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
-
-Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
-
-# History
-
-Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
-
-The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi.
-
-# Interface
-
-Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
-
-Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
-
-Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
-
-# Customization
-
-Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
-
-There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl.
-
-There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
----------- 35
-Vim (/vɪm/; a contraction of Vi IMproved) is a clone of Bill Joy's vi editor for Unix. It was written by Bram Moolenaar based on source for a port of the Stevie editor to the Amiga and first released publicly in 1991. Vim is designed for use both from a command-line interface and as a standalone application in a graphical user interface. Vim is free and open source software and is released under a license that includes some charityware clauses, encouraging users who enjoy the software to consider donating to children in Uganda. The license is compatible with the GNU General Public License.
-
-Although Vim was originally released for the Amiga, Vim has since been developed to be cross-platform, supporting many other platforms. In 2006, it was voted the most popular editor amongst Linux Journal readers.
-
-# History
-
-Bram Moolenaar began working on Vim for the Amiga computer in 1988. Moolenaar first publicly released Vim (v1.14) in 1991. Vim was based on an earlier editor, Stevie, for the Atari ST, created by Tim Thompson, Tony Andrews and G.R. (Fred) Walter.
-
-The name "Vim" is an acronym for "Vi IMproved" because Vim is an extended version of the vi editor, with many additional features designed to be helpful in editing program source code. Originally, the acronym stood for "Vi IMitation", but that was changed with the release of Vim 2.0 in December 1993. A later comment states that the reason for changing the name was that Vim's feature set surpassed that of vi.
-
-# Interface
-
-Like vi, Vim's interface is not based on menus or icons but on commands given in a text user interface; its GUI mode, gVim, adds menus and toolbars for commonly used commands but the full functionality is still expressed through its command line mode. Vi (and by extension Vim) tends to allow a typist to keep their fingers on the home row, which can be an advantage for a touch typist.
-
-Vim has a built-in tutorial for beginners (accessible through the "vimtutor" command). There is also the Vim Users' Manual that details Vim's features. This manual can be read from within Vim, or found online.
-
-Vim also has a built-in help facility (using the :help command) that allows users to query and navigate through commands and features.
-
-# Customization
-
-Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions.
-
-There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl. (and many others)
-
-There are projects bundling together complex scripts and customizations and aimed at turning Vim into a tool for a specific task or adding a major flavour to its behaviour. Examples include Cream, which makes Vim behave like a click-and-type editor, or VimOutliner, which provides a comfortable outliner for users of Unix-like systems.
-==========
-Bash is a Unix shell written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell. Released in 1989, it has been distributed widely as the shell for the GNU operating system and as a default shell on Linux and OS X. It has been ported to Microsoft Windows and distributed with Cygwin and MinGW, to DOS by the DJGPP project, to Novell NetWare and to Android via various terminal emulation applications. In the late 1990s, Bash was a minor player among multiple commonly used shells; at present Bash has overwhelming favor.
+a towel, it says, is about the most massively useful thing an interstellar hitch hiker can have. partly it has great practical value — you can wrap it around you for warmth as you bound across the cold moons of jaglan beta; you can lie on it on the brilliant marble‐sanded beaches of santraginus v, inhaling the heady sea vapours; you can sleep under it beneath the stars which shine so redly on the desert world of kakrafoon; use it to sail a mini raft down the slow heavy river moth; wet it for use in hand‐to‐hand‐combat; wrap it round your head to ward off noxious fumes or to avoid the gaze of the ravenous bugblatter beast of traal (a mindbogglingly stupid animal, it assumes that if you can't see it, it can't see you — daft as a bush, but very ravenous); you can wave your towel in emergencies as a distress signal, and of course dry yourself off with it if it still seems to be clean enough.
 ---------- 50
-126
+gur uvgpuuvxre’f thvqr gb gur tnynkl unf n srj guvatf gb fnl ba gur fhowrpg bs gbjryf.
+
+n gbjry, vg fnlf, vf nobhg gur zbfg znffviryl hfrshy guvat na vagrefgryyne uvgpu uvxre pna unir. cnegyl vg unf terng cenpgvpny inyhr — lbh pna jenc vg nebhaq lbh sbe jnezgu nf lbh obhaq npebff gur pbyq zbbaf bs wntyna orgn; lbh pna yvr ba vg ba gur oevyyvnag zneoyr‐fnaqrq ornpurf bs fnagentvahf i, vaunyvat gur urnql frn incbhef; lbh pna fyrrc haqre vg orarngu gur fgnef juvpu fuvar fb erqyl ba gur qrfreg jbeyq bs xnxensbba; hfr vg gb fnvy n zvav ensg qbja gur fybj urnil evire zbgu; jrg vg sbe hfr va unaq‐gb‐unaq‐pbzong; jenc vg ebhaq lbhe urnq gb jneq bss abkvbhf shzrf be gb nibvq gur tnmr bs gur enirabhf ohtoynggre ornfg bs genny (n zvaqobttyvatyl fghcvq navzny, vg nffhzrf gung vs lbh pna'g frr vg, vg pna'g frr lbh — qnsg nf n ohfu, ohg irel enirabhf); lbh pna jnir lbhe gbjry va rzretrapvrf nf n qvfgerff fvtany, naq bs pbhefr qel lbhefrys bss jvgu vg vs vg fgvyy frrzf gb or pyrna rabhtu.
 ==========
-Bash is a Unix shell written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell. Released in 1989, it has been distributed widely as the shell for the GNU operating system and as a default shell on Linux and OS X. It has been ported to Microsoft Windows and distributed with Cygwin and MinGW, to DOS by the DJGPP project, to Novell NetWare and to Android via various terminal emulation applications. In the late 1990s, Bash was a minor player among multiple commonly used shells; at present Bash has overwhelming favor.
+gur uvgpuuvxre’f thvqr gb gur tnynkl unf n srj guvatf gb fnl ba gur fhowrpg bs gbjryf.
+
+n gbjry, vg fnlf, vf nobhg gur zbfg znffviryl hfrshy guvat na vagrefgryyne uvgpu uvxre pna unir. cnegyl vg unf terng cenpgvpny inyhr — lbh pna jenc vg nebhaq lbh sbe jnezgu nf lbh obhaq npebff gur pbyq zbbaf bs wntyna orgn; lbh pna yvr ba vg ba gur oevyyvnag zneoyr‐fnaqrq ornpurf bs fnagentvahf i, vaunyvat gur urnql frn incbhef; lbh pna fyrrc haqre vg orarngu gur fgnef juvpu fuvar fb erqyl ba gur qrfreg jbeyq bs xnxensbba; hfr vg gb fnvy n zvav ensg qbja gur fybj urnil evire zbgu; jrg vg sbe hfr va unaq‐gb‐unaq‐pbzong; jenc vg ebhaq lbhe urnq gb jneq bss abkvbhf shzrf be gb nibvq gur tnmr bs gur enirabhf ohtoynggre ornfg bs genny (n zvaqobttyvatyl fghcvq navzny, vg nffhzrf gung vs lbh pna'g frr vg, vg pna'g frr lbh — qnsg nf n ohfu, ohg irel enirabhf); lbh pna jnir lbhe gbjry va rzretrapvrf nf n qvfgerff fvtany, naq bs pbhefr qel lbhefrys bss jvgu vg vs vg fgvyy frrzf gb or pyrna rabhtu.
 ---------- 50
-151
+the hitchhiker’s guide to the galaxy has a few things to say on the subject of towels.
+
+a towel, it says, is about the most massively useful thing an interstellar hitch hiker can have. partly it has great practical value — you can wrap it around you for warmth as you bound across the cold moons of jaglan beta; you can lie on it on the brilliant marble‐sanded beaches of santraginus v, inhaling the heady sea vapours; you can sleep under it beneath the stars which shine so redly on the desert world of kakrafoon; use it to sail a mini raft down the slow heavy river moth; wet it for use in hand‐to‐hand‐combat; wrap it round your head to ward off noxious fumes or to avoid the gaze of the ravenous bugblatter beast of traal (a mindbogglingly stupid animal, it assumes that if you can't see it, it can't see you — daft as a bush, but very ravenous); you can wave your towel in emergencies as a distress signal, and of course dry yourself off with it if it still seems to be clean enough.
 ==========
-Bash is a Unix shell written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell. Released in 1989, it has been distributed widely as the shell for the GNU operating system and as a default shell on Linux and OS X. It has been ported to Microsoft Windows and distributed with Cygwin and MinGW, to DOS by the DJGPP project, to Novell NetWare and to Android via various terminal emulation applications. In the late 1990s, Bash was a minor player among multiple commonly used shells; at present Bash has overwhelming favor.
+"the babel fish," said the hitchhiker's guide to the galaxy quietly, "is small, yellow and leech-like, and probably the oddest thing in the universe. it feeds on brainwave energy received not from its own carrier but from those around it. it absorbs all unconscious mental frequencies from this brainwave energy to nourish itself with. it then excretes into the mind of its carrier a telepathic matrix formed by combining the conscious thought frequencies with nerve signals picked up from the speech centres of the brain which has supplied them. the practical upshot of all this is that if you stick a babel fish in your ear you can instantly understand anything in any form of language. the speech patterns you actually hear decode the brainwave matrix which has been fed into your mind by your babel fish.
+---------- 45
+"gur onory svfu," fnvq gur uvgpuuvxre'f thvqr gb gur tnynkl dhvrgyl, "vf fznyy, lryybj naq yrrpu-yvxr, naq cebonoyl gur bqqrfg guvat va gur havirefr. vg srrqf ba oenvajnir raretl erprvirq abg sebz vgf bja pneevre ohg sebz gubfr nebhaq vg. vg nofbeof nyy hapbafpvbhf zragny serdhrapvrf sebz guvf oenvajnir raretl gb abhevfu vgfrys jvgu. vg gura rkpergrf vagb gur zvaq bs vgf pneevre n gryrcnguvp zngevk sbezrq ol pbzovavat gur pbafpvbhf gubhtug serdhrapvrf jvgu areir fvtanyf cvpxrq hc sebz gur fcrrpu pragerf bs gur oenva juvpu unf fhccyvrq gurz. gur cenpgvpny hcfubg bs nyy guvf vf gung vs lbh fgvpx n onory svfu va lbhe rne lbh pna vafgnagyl haqrefgnaq nalguvat va nal sbez bs ynathntr. gur fcrrpu cnggreaf lbh npghnyyl urne qrpbqr gur oenvajnir zngevk juvpu unf orra srq vagb lbhe zvaq ol lbhe onory svfu.
+==========
+"gur onory svfu," fnvq gur uvgpuuvxre'f thvqr gb gur tnynkl dhvrgyl, "vf fznyy, lryybj naq yrrpu-yvxr, naq cebonoyl gur bqqrfg guvat va gur havirefr. vg srrqf ba oenvajnir raretl erprvirq abg sebz vgf bja pneevre ohg sebz gubfr nebhaq vg. vg nofbeof nyy hapbafpvbhf zragny serdhrapvrf sebz guvf oenvajnir raretl gb abhevfu vgfrys jvgu. vg gura rkpergrf vagb gur zvaq bs vgf pneevre n gryrcnguvp zngevk sbezrq ol pbzovavat gur pbafpvbhf gubhtug serdhrapvrf jvgu areir fvtanyf cvpxrq hc sebz gur fcrrpu pragerf bs gur oenva juvpu unf fhccyvrq gurz. gur cenpgvpny hcfubg bs nyy guvf vf gung vs lbh fgvpx n onory svfu va lbhe rne lbh pna vafgnagyl haqrefgnaq nalguvat va nal sbez bs ynathntr. gur fcrrpu cnggreaf lbh npghnyyl urne qrpbqr gur oenvajnir zngevk juvpu unf orra srq vagb lbhe zvaq ol lbhe onory svfu.
 ---------- 50
-123
+"the babel fish," said the hitchhiker's guide to the galaxy quietly, "is small, yellow and leech-like, and probably the oddest thing in the universe. it feeds on brainwave energy received not from its own carrier but from those around it. it absorbs all unconscious mental frequencies from this brainwave energy to nourish itself with. it then excretes into the mind of its carrier a telepathic matrix formed by combining the conscious thought frequencies with nerve signals picked up from the speech centres of the brain which has supplied them. the practical upshot of all this is that if you stick a babel fish in your ear you can instantly understand anything in any form of language. the speech patterns you actually hear decode the brainwave matrix which has been fed into your mind by your babel fish.
 ==========
-Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions. There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl. 
----------- 50
-224
+/bin/bash
+/bin/false
+/bin/false
+/bin/false
+/bin/false
+/bin/false
+/sbin/nologin
+/sbin/nologin
+/bin/false
+/bin/bash
+/bin/bash
+/bin/false
+/bin/false
+/bin/bash
+/bin/false
+/bin/false
+/bin/false
+/bin/bash
+/sbin/nologin
+/bin/false
+/bin/bash
+---------- 40
+      6 /bin/bash
+     12 /bin/false
+      3 /sbin/nologin
 ==========
-Part of Vim's power is that it can be extensively customized. The basic interface can be controlled by the many options available, and the user can define personalized key mappings—often called macros—or abbreviations to automate sequences of keystrokes, or even call internal or user defined functions. There are many plugins available that will extend or add new functionality to Vim. These complex scripts are usually written in Vim's internal scripting language vimscript. Vim also supports scripting using Lua (as of Vim 7.3), Perl, Python, Racket (formerly PLT Scheme), Ruby, and Tcl. 
----------- 50
-214
-==========
-Moist von Lipwig | 10.14
-Reacher Gilt | 15.34
-Patrician Havelock Vetinari | 6.73
-Adora Belle Dearheart | 13
-Mr Pump | 7.3
-Mr Spools | 17.89
-Drumknott | 20.30
-Tolliver Groat | 14.56
-Miss Cripslock | 8.92
-Angua | 20.1
-Mr Gryle | 53.42
-Stanley Howler | 25.67
-Horsefry | 0.43
-Postman | 1.58
----------- 100
-1. ucastnik: Horsefry | 0.43
-2. ucastnik: Postman | 1.58
-3. ucastnik: Patrician Havelock Vetinari | 6.73
-4. ucastnik: Mr Pump | 7.3
-5. ucastnik: Miss Cripslock | 8.92
-6. ucastnik: Moist von Lipwig | 10.14
-7. ucastnik: Adora Belle Dearheart | 13
-8. ucastnik: Tolliver Groat | 14.56
-9. ucastnik: Reacher Gilt | 15.34
-10. ucastnik: Mr Spools | 17.89
-11. ucastnik: Angua | 20.1
-12. ucastnik: Drumknott | 20.30
-13. ucastnik: Stanley Howler | 25.67
-14. ucastnik: Mr Gryle | 53.42
-==========
-Moist von Lipwig | 10.14
-Reacher Gilt | 15.34
-Patrician Havelock Vetinari | 6.73
-
-Adora Belle Dearheart | 13
-Mr Pump | 7.3
-Mr Spools | 17.89
-Drumknott | 20.30
-Tolliver Groat | 14.56
-
-Miss Cripslock | 8.92
-Angua | 20.1
-
-Mr Gryle | 53.42
-
-Stanley Howler | 25.67
-Horsefry | 0.43
-
-Postman | 1.58
----------- 90
-1. Horsefry | 0.43
-2. Postman | 1.58
-3. Patrician Havelock Vetinari | 6.73
-4. Mr Pump | 7.3
-5. Miss Cripslock | 8.92
-6. Moist von Lipwig | 10.14
-7. Adora Belle Dearheart | 13
-8. Tolliver Groat | 14.56
-9. Reacher Gilt | 15.34
-10. Mr Spools | 17.89
-11. Angua | 20.1
-12. Drumknott | 20.30
-13. Stanley Howler | 25.67
-14. Mr Gryle | 53.42
+/bin/bash
+/bin/false
+/bin/false
+/bin/false
+/bin/false
+/bin/false
+/sbin/nologin
+/sbin/nologin
+/bin/false
+/bin/bash
+/bin/bash
+/bin/false
+/bin/false
+/bin/bash
+/bin/false
+/bin/false
+/bin/false
+/bin/bash
+/sbin/nologin
+/bin/false
+/bin/bash
+---------- 40
+/bin/bash
+/bin/false
+/sbin/nologin
 ==========
