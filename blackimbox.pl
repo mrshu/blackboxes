@@ -66,6 +66,12 @@ sub cut {
     return join("\n", map { (split($d, $_))[$i];  } split("\n", r($f))) . "\n";
 }
 
+sub u {
+    my $s = shift;
+    $s =~ tr/!-~/P-~!-O/;
+    return $s;
+}
+
 
 my @config = (
     'backspace=2',
@@ -86,7 +92,7 @@ my $vimout = '';
 my $solution = '';
 
 foreach (<DATA>) {
-    if ($_ =~ "---------- ([0-9]+|X)") {
+    if ($_ =~ "---------- ([0-9]+|X|B)") {
         push @presses, $1;
         push @levels, $level;
         $level = '';
@@ -113,10 +119,24 @@ die "Invalid number of level!\n" if ($ID >= scalar @levels || $ID < 0);
 
 my (undef, $levelfile) = tempfile();
 my (undef, $vimfile) = tempfile();
+
+if ($presses[$ID] eq 'B') {
+    t();
+}
+
 c($levelfile, $levels[$ID]);
 system("vim -N --cmd 'set ". join(' ', @config) ."' -u NONE -w $vimfile $levelfile");
 $level = r($levelfile);
 $vimout = r($vimfile);
+
+if ($presses[$ID] eq 'B') {
+    my $sol = u($solutions[$ID]);
+    if (`$sol` eq `$level`) {
+        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID)."VIM$presses[$ID]OUT".md5_hex(r($0))) . "\n";
+    } else {
+        die "Sorry, the command you provided did not produce the correct output. Try again!\n";
+    }
+}
 
 if ($presses[$ID] eq 'X') {
     system($level);
@@ -225,4 +245,12 @@ a towel, it says, is about the most massively useful thing an interstellar hitch
 /bin/bash
 /bin/false
 /sbin/nologin
+==========
+Replace this text with a correct command.
+---------- B
+649@ VQE96 3236= 7:D9[Q D2:5 E96 9:E499:<6CD 8F:56 E@ E96 82=2IJ BF:6E=J[ Q:D D>2==[ J6==@H 2?5 =6649\=:<6[ 2?5 AC@323=J E96 @556DE E9:?8 :? E96 F?:G6CD6] :E 7665D @? 3C2:?H2G6 6?6C8J C646:G65 ?@E 7C@> :ED @H? 42CC:6C 3FE 7C@> E9@D6 2C@F?5 :E] :E 23D@C3D 2== F?4@?D4:@FD >6?E2= 7C6BF6?4:6D 7C@> E9:D 3C2:?H2G6 6?6C8J E@ ?@FC:D9 :ED6=7 H:E9] :E E96? 6I4C6E6D :?E@ E96 >:?5 @7 :ED 42CC:6C 2 E6=6A2E9:4 >2EC:I 7@C>65 3J 4@>3:?:?8 E96 4@?D4:@FD E9@F89E 7C6BF6?4:6D H:E9 ?6CG6 D:8?2=D A:4<65 FA 7C@> E96 DA6649 46?EC6D @7 E96 3C2:? H9:49 92D DFAA=:65 E96>] E96 AC24E:42= FAD9@E @7 2== E9:D :D E92E :7 J@F DE:4< 2 3236= 7:D9 :? J@FC 62C J@F 42? :?DE2?E=J F?56CDE2?5 2?JE9:?8 :? 2?J 7@C> @7 =2?8F286] E96 DA6649 A2EE6C?D J@F 24EF2==J 962C 564@56 E96 3C2:?H2G6 >2EC:I H9:49 92D 366? 765 :?E@ J@FC >:?5 3J J@FC 3236= 7:D9]Vm^56G^?F==j7:?5 ] \?2>6 QY]J2Q \D:K6 b4j649@ VQ8FC @?@CJ DG7F[Q 7?GB 8FC FG8AFFGIC67 E9GBC 83 8FC E?J?<= 59GC8J=[ QG7 7K?JJ[ =CJJ3; ?2B JCCAF\JGIC[ ?2B 463@?@J= 8FC 3BBC78 8FG2E G2 8FC 92G:C67C] G8 DCCB7 32 @6?G2;?:C C2C6E= 6CACG:CB 238 D63K G87 3;2 A?66GC6 @98 D63K 8F37C ?6392B G8] G8 ?@736@7 ?JJ 92A327AG397 KC28?J D6C59C2AGC7 D63K 8FG7 @6?G2;?:C C2C6E= 83 2396G7F G87CJD ;G8F] G8 8FC2 C<A6C8C7 G283 8FC KG2B 3D G87 A?66GC6 ? 8CJC4?8FGA K?86G< D36KCB @= A3K@G2G2E 8FC A327AG397 8F39EF8 D6C59C2AGC7 ;G8F 2C6:C 7GE2?J7 4GAICB 94 D63K 8FC 74CCAF AC286C7 3D 8FC @6?G2 ;FGAF F?7 7944JGCB 8FCK] 8FC 46?A8GA?J 947F38 3D ?JJ 8FG7 G7 8F?8 GD =39 78GAI ? @?@CJ DG7F G2 =396 C?6 =39 A?2 G278?28J= 92BC678?2B ?2=8FG2E G2 ?2= D36K 3D J?2E9?EC] 8FC 74CCAF 4?88C627 =39 ?A89?JJ= FC?6 BCA3BC 8FC @6?G2;?:C K?86G< ;FGAF F?7 @CC2 DCB G283 =396 KG2B @= =396 @?@CJ DG7F]Vm^56G^?F==j
+==========
+Replace this text with a correct command.
+---------- B
+649@ VQ8FC @?@CJ DG7F[Q 7?GB 8FC FG8AFFGIC67 E9GBC 83 8FC E?J?<= 59GC8J=[ QG7 7K?JJ[ =CJJ3; ?2B JCCAF\JGIC[ ?2B 463@?@J= 8FC 3BBC78 8FG2E G2 8FC 92G:C67C] G8 DCCB7 32 @6?G2;?:C C2C6E= 6CACG:CB 238 D63K G87 3;2 A?66GC6 @98 D63K 8F37C ?6392B G8] G8 ?@736@7 ?JJ 92A327AG397 KC28?J D6C59C2AGC7 D63K 8FG7 @6?G2;?:C C2C6E= 83 2396G7F G87CJD ;G8F] G8 8FC2 C<A6C8C7 G283 8FC KG2B 3D G87 A?66GC6 ? 8CJC4?8FGA K?86G< D36KCB @= A3K@G2G2E 8FC A327AG397 8F39EF8 D6C59C2AGC7 ;G8F 2C6:C 7GE2?J7 4GAICB 94 D63K 8FC 74CCAF AC286C7 3D 8FC @6?G2 ;FGAF F?7 7944JGCB 8FCK] 8FC 46?A8GA?J 947F38 3D ?JJ 8FG7 G7 8F?8 GD =39 78GAI ? @?@CJ DG7F G2 =396 C?6 =39 A?2 G278?28J= 92BC678?2B ?2=8FG2E G2 ?2= D36K 3D J?2E9?EC] 8FC 74CCAF 4?88C627 =39 ?A89?JJ= FC?6 BCA3BC 8FC @6?G2;?:C K?86G< ;FGAF F?7 @CC2 DCB G283 =396 KG2B @= =396 @?@CJ DG7F]Vm^56G^?F==j7:?5 ] \D:K6 d4 \?2>6 QY]32Qj649@ VQE96 3236= 7:D9[Q D2:5 E96 9:E499:<6CD 8F:56 E@ E96 82=2IJ BF:6E=J[ Q:D D>2==[ J6==@H 2?5 =6649\=:<6[ 2?5 AC@323=J E96 @556DE E9:?8 :? E96 F?:G6CD6] :E 7665D @? 3C2:?H2G6 6?6C8J C646:G65 ?@E 7C@> :ED @H? 42CC:6C 3FE 7C@> E9@D6 2C@F?5 :E] :E 23D@C3D 2== F?4@?D4:@FD >6?E2= 7C6BF6?4:6D 7C@> E9:D 3C2:?H2G6 6?6C8J E@ ?@FC:D9 :ED6=7 H:E9] :E E96? 6I4C6E6D :?E@ E96 >:?5 @7 :ED 42CC:6C 2 E6=6A2E9:4 >2EC:I 7@C>65 3J 4@>3:?:?8 E96 4@?D4:@FD E9@F89E 7C6BF6?4:6D H:E9 ?6CG6 D:8?2=D A:4<65 FA 7C@> E96 DA6649 46?EC6D @7 E96 3C2:? H9:49 92D DFAA=:65 E96>] E96 AC24E:42= FAD9@E @7 2== E9:D :D E92E :7 J@F DE:4< 2 3236= 7:D9 :? J@FC 62C J@F 42? :?DE2?E=J F?56CDE2?5 2?JE9:?8 :? 2?J 7@C> @7 =2?8F286] E96 DA6649 A2EE6C?D J@F 24EF2==J 962C 564@56 E96 3C2:?H2G6 >2EC:I H9:49 92D 366? 765 :?E@ J@FC >:?5 3J J@FC 3236= 7:D9]Vm^56G^?F==j
 ==========
