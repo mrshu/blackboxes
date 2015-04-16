@@ -134,7 +134,7 @@ if ($presses[$ID] eq 'B') {
     my $s = `$sol`;
     my $l =`$level`;
     if ($s eq $l) {
-        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID)."VIM$presses[$ID]OUT".md5_hex(r($0))) . "\n";
+        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID)."VIMBOUT".md5_hex(r($0))) . "\n";
     } else {
         die "Sorry, the command you provided did not produce the correct output. Try again!\n";
     }
@@ -144,7 +144,7 @@ if ($presses[$ID] eq 'X') {
     system($level);
     my $v = eval($solutions[$ID]);
     if ($v) {
-        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID)."VIM$presses[$ID]OUT".md5_hex(r($0))) . "\n";
+        die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID)."VIMXOUT".md5_hex(r($0))) . "\n";
     } else {
         die "Sorry, the command you provided did not produce the correct output. Try again!\n";
     }
