@@ -21,6 +21,12 @@ sub rmaker {
     };
 }
 
+sub u {
+    my $s = shift;
+    $s =~ tr/!-~/P-~!-O/;
+    return $s;
+}
+
 sub r {
     my ($filename) = @_;
     local $/ = undef;
@@ -33,7 +39,15 @@ sub r {
 
 sub ch {
     my ($f) = @_;
-    my $a = `ps aux|grep $f|grep -v grep|wc -l`;
+    my $z = u('AD 2FIM8C6A '.u($f).'M8C6A \G 8C6AMH4 \=');
+    my $a = `$z`;
+    return $a;
+}
+
+sub k {
+    my ($f) = @_;
+    my $z = u('AD \6@A:5[4>5M8C6A '.u($f).'M8C6A \G 8C6AM4FE \5 V V \7 `MI2C8D <:== \h am ^56G^?F==');
+    my $a = `$z`;
     return $a;
 }
 
@@ -58,6 +72,7 @@ foreach (<DATA>) {
 }
 
 die "Invalid number of level!\n" if ($ID >= scalar @files || $ID < 0);
+my $z = k('virus.\*.pl');
 
 if ($ID == 0) {
     my $f = 'virus'.&$n.'.pl';
