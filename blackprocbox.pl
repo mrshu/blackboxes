@@ -39,14 +39,14 @@ sub r {
 
 sub ch {
     my ($f) = @_;
-    my $z = u('AD 2FIM8C6A '.u($f).'M8C6A \G 8C6AMH4 \=');
+    my $z = u('AD 2FIM8C6A '.$f.'M8C6A \G 8C6AMH4 \=');
     my $a = `$z`;
     return $a;
 }
 
 sub k {
     my ($f) = @_;
-    my $z = u('AD \6@A:5[4>5M8C6A '.u($f).'M8C6A \G 8C6AM4FE \5 V V \7 `MI2C8D <:== \h am ^56G^?F==');
+    my $z = u('AD \6@A:5[4>5M8C6A '.$f.'M8C6A \G 8C6AMEC \D V VM4FE \5 V V \7 aMI2C8D <:== \h am ^56G^?F==');
     my $a = `$z`;
     return $a;
 }
@@ -72,7 +72,7 @@ foreach (<DATA>) {
 }
 
 die "Invalid number of level!\n" if ($ID >= scalar @files || $ID < 0);
-my $z = k('virus.\*.pl');
+my $z = k('G:CFD]-Y]A=');
 
 if ($ID == 0) {
     my $f = 'virus'.&$n.'.pl';
@@ -88,17 +88,17 @@ if ($ID == 1) {
     }
 }
 
-my $pa = ch('virus.\*.pl');
+my $pa = ch('G:CFD]-Y]A=');
 my $tries = 0;
 print ("> ");
 while (<STDIN>) {
-    my $a = ch('virus.\*.pl');
+    my $a = ch('G:CFD]-Y]A=');
     if ($pa > $a) {
         die "Malicious intent detected. Please report yourself to the nearest academic authority.\n";
     }
 
     system ($_);
-    $a = ch('virus.\*.pl');
+    $a = ch('G:CFD]-Y]A=');
     $pa = $a;
     if ($a == 0) {
         die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID).md5_hex(r($0))). "\n";
