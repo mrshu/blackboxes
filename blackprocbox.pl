@@ -88,6 +88,14 @@ if ($ID == 1) {
     }
 }
 
+if ($ID == 2) {
+    my $f = 'passworder.pl';
+    c($f, $files[$ID]);
+    $ENV{PASSWORD} = md5_hex($ENV{USER}.md5_hex($files[$ID]).md5_hex(r($0)));
+    system("perl $f&");
+    delete $ENV{PASSWORD};
+}
+
 my $pa = ch('G:CFD]-Y]A=');
 my $tries = 0;
 print ("> ");
@@ -100,7 +108,7 @@ while (<STDIN>) {
     system ($_);
     $a = ch('G:CFD]-Y]A=');
     $pa = $a;
-    if ($a == 0) {
+    if ($a == 0 && $ID != 2) {
         die "Congratulations! The password is: " . md5_hex($ENV{USER}.md5_hex($ID).md5_hex(r($0))). "\n";
     }
     $tries = $tries + 1;
@@ -122,4 +130,4 @@ while(2==2) {
 while(3==3) {
     sleep(5);
 }
-========== 4
+========== 50
