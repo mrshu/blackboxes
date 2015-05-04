@@ -42,7 +42,10 @@ sub cm {
     my $j = $i - 1;
     my $o = $f;
     $f =~ s/\.$j/\.$i/;
-    system("tar -c" . $t . "f $f $o");
+    system("tar -cf $f $o") if $t eq '';
+    system("gzip -c $o > $f") if $t eq 'g';
+    system("bzip2 -c $o > $f") if $t eq 'b';
+    system("xz -c $o > $f") if $t eq 'x';
     unlink("$o");
     return $f;
 }
@@ -54,11 +57,11 @@ c($file, "The password is: " . md5_hex($ENV{USER}.md5_hex(r($0))) . "\n");
 foreach my $c (1 .. 8) {
     my $r = int(rand(4));
     if ($r == 0)  {
-        $file = cm($file, 'z', $c);
+        $file = cm($file, 'g', $c);
     } elsif ($r == 1) {
-        $file = cm($file, 'j', $c);
+        $file = cm($file, 'b', $c);
     } elsif ($r == 2) {
-        $file = cm($file, 'J', $c);
+        $file = cm($file, 'x', $c);
     } else {
         $file = cm($file, '', $c);
     }
